@@ -1,9 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 const Form = () => {
 
   const handlePayment = () => {
-    window.location.href = "https://cosmofeed.com/vp/663e81d0a3e76e00138f15a2";
+    console.log("Payment");
+    const PAYMENT_URL = "https://cosmofeed.com/vp/663e81d0a3e76e00138f15a2";
+    window.location.href = PAYMENT_URL;
   }
   return (
     <body className="bg-gray-200 ">
