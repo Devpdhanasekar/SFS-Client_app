@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 const Form = () => {
+
+  const handlePayment = () => {
+    window.location.href = "https://cosmofeed.com/vp/663e81d0a3e76e00138f15a2";
+  }
   return (
     <body className="bg-gray-200 ">
       <div class="flex justify-center items-center min-h-screen bg-gray-100 antialiased">
@@ -16,7 +20,7 @@ const Form = () => {
               </Link>
               <br />
               <Link to='/' className="text-center border   text-sm  px-2 bg-gray-200 font-bold text-black  rounded-[30px] py-2">
-              <button>
+              <button onClick={handlePayment}>
                 Pay Now
               </button>
               </Link>
