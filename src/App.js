@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./App.css";
+import Demo from "./componets/Demo/Demo";
+import Form from "./componets/Form/Form";
+import Chart from "./componets/Chart/Chart";
 
 function App() {
+  const barData = [10, 20, 30, 40];
+  const labels = ['A', 'B', 'C', 'D'];
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App-header">
+        <Routes>
+          <Route path="/" element={<Form />} />
+          <Route path="/demo" element={<Demo />} />
+          <Route
+            path="/chart"
+            element={
+              <Chart
+              data={barData} labels={labels}
+              />
+            }
+          />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
