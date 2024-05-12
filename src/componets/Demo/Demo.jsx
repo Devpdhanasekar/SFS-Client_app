@@ -1,13 +1,53 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import uploadImage from '../../assets/img_upload.jpg';
+import axios from 'axios';
 
 const Demo = () => {
   const [selectedFile, setSelectedFile] = useState(null);
+  const [title, setTitle] = useState("");
+  const [keywords, setKeywords] = useState("");
+  const [user, setUser] = useState("65ba9f1bda636e275d270114"); // If you have user information, you can set it here
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
+  };
+
+  const handleTitleChange = (event) => {
+    setTitle(event.target.value);
+  };
+
+  const handleKeywordsChange = (event) => {
+    setKeywords(event.target.value);
+  };
+
+  const handleUpload = () => {
+    if (!selectedFile) {
+      alert("Please select a file to upload.");
+      return;
+    }
+
+    if (!title) {
+      alert("Please enter a title.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('resume', selectedFile);
+    formData.append('title', title);
+    formData.append('keywords', keywords);
+    formData.append('user', user);
+
+    axios.post('https://crafy-server.onrender.com/works/upload', formData)
+      .then((response) => {
+        console.log('File uploaded successfully:', response.data);
+        // Optionally, you can do something after successful upload
+      })
+      .catch((error) => {
+        console.error('Error uploading file:', error.message);
+        // Handle error
+      });
   };
 
   return (
@@ -27,9 +67,31 @@ const Demo = () => {
         {selectedFile && (
           <p style={{ marginTop: "10px" }}>Selected file: {selectedFile.name}</p>
         )}
-        <Link style={{ marginTop: "10px" }} to='/demo' className="text-center border text-sm px-2 bg-gray-200 font-bold text-black rounded-[30px] py-2">
-          <button>Upload</button>
-        </Link>
+        <input
+          type="text"
+          placeholder="Enter title"
+          value={title}
+          onChange={handleTitleChange}
+          style={{ marginTop: "10px", width: "100%", padding: "8px", boxSizing: "border-box" }}
+        />
+        <input
+          type="text"
+          placeholder="Enter keywords"
+          value={keywords}
+          onChange={handleKeywordsChange}
+          style={{ marginTop: "10px", width: "100%", padding: "8px", boxSizing: "border-box" }}
+        />
+        {/* If user info is available, you can add a field for user input */}
+        {/* <input
+          type="text"
+          placeholder="Enter user"
+          value={user}
+          onChange={(e) => setUser(e.target.value)}
+          style={{ marginTop: "10px", width: "100%", padding: "8px", boxSizing: "border-box" }}
+        /> */}
+        <button style={{ marginTop: "10px" }} onClick={handleUpload} className="text-center border text-sm px-2 bg-gray-200 font-bold text-black rounded-[30px] py-2">
+          Upload
+        </button>
       </div>
     </div>
   );
