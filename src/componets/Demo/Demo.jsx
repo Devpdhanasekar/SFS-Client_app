@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
 import uploadImage from '../../assets/img_upload.jpg';
 import axios from 'axios';
 
@@ -7,8 +6,11 @@ const Demo = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [title, setTitle] = useState("");
   const [keywords, setKeywords] = useState("");
-  const [user, setUser] = useState("65ba9f1bda636e275d270114"); // If you have user information, you can set it here
+  const [user, setUser] = useState(""); // If you have user information, you can set it here
 
+  useEffect(()=>{
+    setUser("65ba9f1bda636e275d270114")
+  },[])
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
@@ -81,14 +83,6 @@ const Demo = () => {
           onChange={handleKeywordsChange}
           style={{ marginTop: "10px", width: "100%", padding: "8px", boxSizing: "border-box" }}
         />
-        {/* If user info is available, you can add a field for user input */}
-        {/* <input
-          type="text"
-          placeholder="Enter user"
-          value={user}
-          onChange={(e) => setUser(e.target.value)}
-          style={{ marginTop: "10px", width: "100%", padding: "8px", boxSizing: "border-box" }}
-        /> */}
         <button style={{ marginTop: "10px" }} onClick={handleUpload} className="text-center border text-sm px-2 bg-gray-200 font-bold text-black rounded-[30px] py-2">
           Upload
         </button>
