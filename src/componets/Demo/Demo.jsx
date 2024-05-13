@@ -10,7 +10,7 @@ const Demo = () => {
 
   useEffect(()=>{
     setUser("65ba9f1bda636e275d270114")
-    setKeywords("Hello")
+    // setKeywords("Hello")
   },[])
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -21,9 +21,9 @@ const Demo = () => {
     setTitle(event.target.value);
   };
 
-  // const handleKeywordsChange = (event) => {
-  //   setKeywords(event.target.value);
-  // };
+  const handleKeywordsChange = (event) => {
+    setKeywords(event.target.value);
+  };
 
   const handleUpload = () => {
     if (!selectedFile) {
@@ -77,13 +77,13 @@ const Demo = () => {
           onChange={handleTitleChange}
           style={{ marginTop: "10px", width: "100%", padding: "8px", boxSizing: "border-box" }}
         />
-        {/* <input
+        <input
           type="text"
-          placeholder="Enter keywords"
+          placeholder="Enter Amount"
           value={keywords}
           onChange={handleKeywordsChange}
           style={{ marginTop: "10px", width: "100%", padding: "8px", boxSizing: "border-box" }}
-        /> */}
+        />
         <button style={{ marginTop: "10px" }} onClick={handleUpload} className="text-center border text-sm px-2 bg-gray-200 font-bold text-black rounded-[30px] py-2">
           Upload
         </button>
