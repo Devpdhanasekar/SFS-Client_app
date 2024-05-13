@@ -21,9 +21,9 @@ const Demo = () => {
     setTitle(event.target.value);
   };
 
-  const handleKeywordsChange = (event) => {
-    setKeywords(event.target.value);
-  };
+  // const handleKeywordsChange = (event) => {
+  //   setKeywords(event.target.value);
+  // };
 
   const handleUpload = () => {
     if (!selectedFile) {
